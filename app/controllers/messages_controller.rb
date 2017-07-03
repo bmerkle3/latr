@@ -1,24 +1,25 @@
 class MessagesController < ApplicationController
   # skip_before_filter :verify_authenticity_token
 
-  def index
-    @messages = Message.all
-  end
-
-  def show
-    @message = Message.find(params[:id])
-  end
-
   def new
     @message = Message.new
   end
 
-  def create
+
+
+  def send_message
     @message = Message.new(message_params)
+    from_time = Time.now
+    to_time = DateTime.parse(@message.send_at.to_s)
+    @send_in = helpers.distance_of_time_in_words(from_time, to_time)
+    @message.send_at = to_time
+
     if @message.save
-      redirect_to @message, notice: 'Message was successfully created.'
+      # MessageWorker.perform_in(5.minutes, @message.id)
+      MessageWorker.perform_async(@message.id)
+      redirect_to root_path
     else
-      render :new, status: 422
+      redirect_to messages_new_path
     end
   end
 
