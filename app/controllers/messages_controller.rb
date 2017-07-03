@@ -25,6 +25,11 @@ class MessagesController < ApplicationController
     end
   end
 
+  def show
+    @message = Message.find(params[:id])
+    render json: @message, status: :ok
+  end
+
   private
   def message_params
     params.require(:message).permit(:caption, :image_url, :sender_id, :receiver_id, :deliver_at, :deliverable)
