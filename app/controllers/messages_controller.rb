@@ -1,11 +1,13 @@
 class MessagesController < ApplicationController
   # skip_before_filter :verify_authenticity_token
+  def index
+    @messages = Message.all
+    render json: @messages, status: :ok
+  end
 
   def new
     @message = Message.new
   end
-
-
 
   def send_message
     @message = Message.new(message_params)
@@ -24,9 +26,7 @@ class MessagesController < ApplicationController
   end
 
   private
-
   def message_params
     params.require(:message).permit(:caption, :image_url, :sender_id, :receiver_id, :deliver_at, :deliverable)
   end
-
 end

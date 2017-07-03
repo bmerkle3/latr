@@ -8,3 +8,6 @@
 
 User.create!(name: "Braidy", email: "braidymerkle@gmail.com", password: "password", phone: "6306068247")
 
+Message.create!(caption: "fun pic", image_url: "www.image.com", sender_id: 1, receiver_id: 1, deliver_at: '2017-07-03 11:46:08 -0500', deliverable: true)
+
+Message.create!(caption: "second pic", image_url: "www.blahblah.com", sender_id: 1, receiver_id: 1, deliver_at: '2017-07-03 11:47:08 -0500', deliverable: true)
