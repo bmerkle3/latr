@@ -9,7 +9,7 @@ class MessagesController < ApplicationController
     @message = Message.new
   end
 
-  def send_message
+  def create
     @message = Message.new(message_params)
     from_time = Time.now
     to_time = DateTime.parse(@message.send_at.to_s)
@@ -32,6 +32,6 @@ class MessagesController < ApplicationController
 
   private
   def message_params
-    params.require(:message).permit(:caption, :image_url, :sender_id, :receiver_id, :deliver_at, :deliverable)
+    params.require(:message).permit(:caption, :image, :sender_id, :receiver_id, :deliver_at, :deliverable)
   end
 end

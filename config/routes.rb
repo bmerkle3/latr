@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   get '/messages', to: 'messages#index'
   get '/messages/new', to: 'messages#new'
-  post 'messages/send_message' => 'messages#send_message', as: :send_message
+  post 'messages/create' => 'messages#create', as: :create
 
   get '/messages/:id', to: 'messages#show'
 

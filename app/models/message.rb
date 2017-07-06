@@ -2,6 +2,11 @@ class Message < ApplicationRecord
   belongs_to :sender, class_name: :User
   belongs_to :receiver, class_name: :User
 
+  # paperclip options for styles, size, default (missing image)
+  has_attached_file :image
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
+
+
     def send_sms(number, text)
     #if authenticateToken error: comment out the 'protect_from_forgery with: :exception' method in application_controller.rb
     # auth_token = ENV['TEST_TWILIO_TOKEN']
