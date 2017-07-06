@@ -2,7 +2,13 @@ class Message < ApplicationRecord
   belongs_to :sender, class_name: :User
   belongs_to :receiver, class_name: :User
 
-    def send_sms(number, text)
+  # include Paperclip::Glue
+  # paperclip options for styles, size, default (missing image)
+  has_attached_file :image
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
+
+
+    def send_sms(number, message)
     #if authenticateToken error: comment out the 'protect_from_forgery with: :exception' method in application_controller.rb
     # auth_token = ENV['TEST_TWILIO_TOKEN']
     # acct_sid = ENV['TEST_TWILIO_ID']
@@ -16,7 +22,7 @@ class Message < ApplicationRecord
     message = @client.account.messages.create(
         from: from,
         to:   '+1'+ number,
-        body: text.body
+        body: message.caption
         )
   end
 

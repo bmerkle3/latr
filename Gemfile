@@ -23,6 +23,7 @@ gem 'sinatra', github: 'sinatra/sinatra'
 gem 'redis', '~> 3.0'
 gem 'twilio-ruby'
 gem 'dotenv-rails'
+gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

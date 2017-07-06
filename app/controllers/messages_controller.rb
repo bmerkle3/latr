@@ -9,12 +9,12 @@ class MessagesController < ApplicationController
     @message = Message.new
   end
 
-  def send_message
+  def create
     @message = Message.new(message_params)
-    from_time = Time.now
-    to_time = DateTime.parse(@message.send_at.to_s)
-    @send_in = helpers.distance_of_time_in_words(from_time, to_time)
-    @message.send_at = to_time
+    # from_time = Time.now
+    # to_time = DateTime.parse(@message.deliver_at.to_s)
+    # @send_in = helpers.distance_of_time_in_words(from_time, to_time)
+    # @message.deliver_at = to_time
 
     if @message.save
       # MessageWorker.perform_in(5.minutes, @message.id)
@@ -32,6 +32,6 @@ class MessagesController < ApplicationController
 
   private
   def message_params
-    params.require(:message).permit(:caption, :image_url, :sender_id, :receiver_id, :deliver_at, :deliverable)
+    params.permit(:caption, :image, :sender_id, :receiver_id, :deliver_at, :deliverable)
   end
 end
