@@ -8,8 +8,8 @@
 User.destroy_all
 Message.destroy_all
 
-User.create!(name: "Braidy", email: "braidymerkle@gmail.com", password: "password", phone: "6306068247")
+user = User.create!(name: "Braidy", email: "braidymerkle@gmail.com", password: "password", phone: "6306068247")
 
-Message.create!(caption: "fun pic", sender: 1, receiver: 1, deliver_at: '2017-07-03 11:46:08 -0500', deliverable: true)
+Message.create!(caption: "fun pic", sender: user, receiver: user, deliver_at: '2017-07-03 11:46:08 -0500', deliverable: true)
 
-Message.create!(caption: "second pic", sender: 1, receiver: 1, deliver_at: '2017-07-03 11:47:08 -0500', deliverable: true)
+Message.create!(caption: "second pic", sender: user, receiver: user, deliver_at: '2017-07-03 11:47:08 -0500', deliverable: true)
