@@ -10,7 +10,9 @@ class MessagesController < ApplicationController
   end
 
   def create
+    p "in create method now"
     @message = Message.new(message_params)
+    p message_params
     # from_time = Time.now
     # to_time = DateTime.parse(@message.deliver_at.to_s)
     # @send_in = helpers.distance_of_time_in_words(from_time, to_time)
@@ -18,9 +20,11 @@ class MessagesController < ApplicationController
 
     if @message.save
       # MessageWorker.perform_in(5.minutes, @message.id)
+      p "it saved"
       MessageWorker.perform_async(@message.id)
       redirect_to root_path
     else
+      p "in the else clause"
       redirect_to messages_new_path
     end
   end
