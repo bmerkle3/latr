@@ -9,3 +9,5 @@ class MessageWorker
     @message.send_sms(@message.clean_number, @message)
   end
 end
+
+#worker: bundle exec sidekiq -C config/sidekiq.yml
