@@ -1,4 +1,6 @@
 class Message < ApplicationRecord
+  attr_accessor :image_file_name
+
   belongs_to :sender, class_name: :User
   belongs_to :receiver, class_name: :User
 
