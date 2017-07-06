@@ -1,4 +1,15 @@
 GIT
+  remote: git://github.com/thoughtbot/paperclip.git
+  revision: 82cd3781b4bbfe20778fe5f9a6802d348cd5ee1a
+  specs:
+    paperclip (5.1.0)
+      activemodel (>= 4.2.0)
+      activesupport (>= 4.2.0)
+      cocaine (~> 0.5.5)
+      mime-types
+      mimemagic (~> 0.3.0)
+
+GIT
   remote: https://github.com/sinatra/sinatra.git
   revision: a58834812b455101111ef332c7510bc9083c30d0
   specs:
@@ -88,12 +99,6 @@ GEM
     nio4r (2.1.0)
     nokogiri (1.8.0)
       mini_portile2 (~> 2.2.0)
-    paperclip (5.0.0)
-      activemodel (>= 4.2.0)
-      activesupport (>= 4.2.0)
-      cocaine (~> 0.5.5)
-      mime-types
-      mimemagic (~> 0.3.0)
     pg (0.21.0)
     puma (3.9.1)
     rack (2.0.3)
@@ -165,7 +170,7 @@ DEPENDENCIES
   byebug
   dotenv-rails
   listen (>= 3.0.5, < 3.2)
-  paperclip (~> 5.0.0)
+  paperclip!
   pg (~> 0.18)
   puma (~> 3.7)
   rails (~> 5.1.2)

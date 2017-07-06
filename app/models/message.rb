@@ -2,6 +2,7 @@ class Message < ApplicationRecord
   belongs_to :sender, class_name: :User
   belongs_to :receiver, class_name: :User
 
+  # include Paperclip::Glue
   # paperclip options for styles, size, default (missing image)
   has_attached_file :image
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
