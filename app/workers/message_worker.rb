@@ -4,6 +4,7 @@ class MessageWorker
 
   def perform(message_id)
     @message = Message.find(message_id)
+    p "*" * 90
     puts "SIDEKIQ WORKER SENDING A MESSAGE TO #{@message.receiver.phone}"
     @message.send_sms(@message.clean_number, @message)
   end
