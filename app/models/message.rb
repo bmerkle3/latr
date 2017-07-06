@@ -8,7 +8,7 @@ class Message < ApplicationRecord
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
 
-    def send_sms(number, text)
+    def send_sms(number, message)
     #if authenticateToken error: comment out the 'protect_from_forgery with: :exception' method in application_controller.rb
     # auth_token = ENV['TEST_TWILIO_TOKEN']
     # acct_sid = ENV['TEST_TWILIO_ID']
@@ -22,7 +22,7 @@ class Message < ApplicationRecord
     message = @client.account.messages.create(
         from: from,
         to:   '+1'+ number,
-        body: text.body
+        body: message.caption
         )
   end
 

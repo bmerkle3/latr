@@ -18,8 +18,8 @@ class MessagesController < ApplicationController
 
     if @message.save
       # MessageWorker.perform_in(5.minutes, @message.id)
-      # MessageWorker.perform_async(@message.id)
-      # redirect_to root_path
+      MessageWorker.perform_async(@message.id)
+      redirect_to root_path
     else
       redirect_to messages_new_path
     end
