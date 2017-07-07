@@ -15,6 +15,7 @@ class MessagesController < ApplicationController
     # .strftime("%-m/%-d/%y")
 
     # from_time = Time.now
+    p "*"*80
     p original_time = @message.deliver_at
     to_time = DateTime.parse(@message.deliver_at.to_s)
     # @send_in = helpers.distance_of_time_in_words(from_time, to_time)
