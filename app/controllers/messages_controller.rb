@@ -11,15 +11,16 @@ class MessagesController < ApplicationController
 
   def create
     @message = Message.new(message_params)
-    p message_params
-    # from_time = Time.now
-    # to_time = DateTime.parse(@message.deliver_at.to_s)
-    # @send_in = helpers.distance_of_time_in_words(from_time, to_time)
-    # @message.deliver_at = to_time
+
+    from_time = DateTime.now.utc
+    to_time = @message.deliver_at
+    dif_time = to_time - from_time
+    dif_days = dif_time / 60 / 60 / 24
+    dif_days
 
     if @message.save
-      # MessageWorker.perform_in(5.minutes, @message.id)
-      MessageWorker.perform_async(@message.id)
+      MessageWorker.perform_in(dif_days.days, @message.id)
+      # MessageWorker.perform_async(@message.id)
       redirect_to root_path
     else
       redirect_to messages_new_path
