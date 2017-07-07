@@ -14,12 +14,13 @@ class MessagesController < ApplicationController
 
     from_time = DateTime.now.utc
     to_time = @message.deliver_at
-    dif_time = to_time - from_time
-    dif_days = dif_time / 60 / 60 / 24
-    dif_days
+    dif_in_seconds = to_time - from_time
+    dif_in_minutes = dif_in_seconds / 60
+    dif_in_hours = dif_in_minutes / 60
+    dif_in_days = dif_in_hours / 24
 
     if @message.save
-      MessageWorker.perform_in(dif_days.days, @message.id)
+      MessageWorker.perform_in(dif_in_minutes.minutes, @message.id)
       # MessageWorker.perform_async(@message.id)
       redirect_to root_path
     else
@@ -34,6 +35,7 @@ class MessagesController < ApplicationController
 
   private
   def message_params
-    params.permit(:caption, :image, :sender_id, :receiver_id, :deliver_at, :deliverable)
+    # removed .require(:message) for rails api on heroku
+    params.require(:message).permit(:caption, :image, :sender_id, :receiver_id, :deliver_at, :deliverable)
   end
 end
