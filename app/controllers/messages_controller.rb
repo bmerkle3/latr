@@ -10,9 +10,10 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @message = Message.new(message_params)
-    # from_time = Time.now
-    to_time = DateTime.parse(@message.deliver_at.to_s)
+    p @message = Message.new(message_params)
+
+    # p from_time = DateTime.now
+    # p to_time = @message.deliver_at
     # @send_in = helpers.distance_of_time_in_words(from_time, to_time)
     # @message.deliver_at = to_time
 
@@ -32,6 +33,7 @@ class MessagesController < ApplicationController
 
   private
   def message_params
+    # remove .require(:message) for deploy to heroku
     params.permit(:caption, :image, :sender_id, :receiver_id, :deliver_at, :deliverable)
   end
 end
