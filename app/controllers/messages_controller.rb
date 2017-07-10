@@ -20,7 +20,8 @@ class MessagesController < ApplicationController
     dif_in_days = dif_in_hours / 24
 
     if @message.save
-      MessageWorker.perform_in(dif_in_minutes.minutes, @message.id)
+      # *************comment in line 24 or 25 to send messages again*******
+      # MessageWorker.perform_in(dif_in_minutes.minutes, @message.id)
       # MessageWorker.perform_async(@message.id)
       redirect_to root_path
     else
